@@ -2,8 +2,10 @@
 
 # Description: Display system information
 
+today=$(date +%d-%m-%Y)
+
 echo "== System Information =="
 echo "Hostname: $(hostname)"
-echo "Date: $(date)"
+echo "Date: ${today}"
 echo "Kernel: $(uname -r)"
 
