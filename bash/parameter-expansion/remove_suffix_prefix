@@ -1,0 +1,40 @@
+#!/bin/bash
+
+## Remove Suffix (from end)
+
+filename="document.txt"
+echo "${filename%.txt}"
+# document
+
+filepath="backup.2024.tar.gz"
+echo "${filepath%.*}"
+# backup.2024.tar (shortest match)
+
+echo "${filepath%%.*}"
+# backup (longest match)
+
+
+## Remove Prefix (from beginning)
+
+filepath="/home/user/document.txt"
+echo "${filepath#*/}"
+# home/user/document.txt (shortest match)
+
+echo "${filepath##*/}"
+# document.txt (longest match - this is basename!)
+
+
+## Practical
+
+filepath="/home/user/report.tar.gz"
+
+filename="${filepath##*/}"
+# report.tar.gz (basename)
+
+directory="${filepath%/*}"
+# /home/user (dirname)
+
+extension="${filename##*.}"
+# gz
+basename="${filename%%.*}"
+# report

@@ -1,0 +1,17 @@
+#!/bin/bash
+
+name=""
+
+# Use default if variable is unset or empty (Dash sign)
+#echo "Hi, ${name:-User}"
+#echo "${name}"
+
+# Set the variable if unset or empty (Equals sign)
+#echo "${name:=User}"
+#echo "${name}"
+
+name="${1:-world}"
+log_level="${LOG_LEVEL:-info}"
+echo "Hi, ${name} (log: ${log_level})"
+
+

@@ -1,0 +1,35 @@
+Summary
+
+
+
+
+
+Parameter expansion replaces the need for sed, awk, cut in most cases
+
+
+
+Default values: ${var:-default} and ${var:=default}
+
+
+
+String length: ${#var}
+
+
+
+Remove suffix: ${var%pattern} (shortest), ${var%%pattern} (longest)
+
+
+
+Remove prefix: ${var#pattern} (shortest), ${var##pattern} (longest)
+
+
+
+Search/replace: ${var/old/new} (first), ${var//old/new} (all)
+
+
+
+Case change: ${var^^} (upper), ${var,,} (lower)
+
+
+
+Order matters: Brace expansion happens before variable expansion
