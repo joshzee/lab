@@ -1,0 +1,26 @@
+#!/bin/bash
+
+if [[ $(systemctl --user cat "$2" 2>/dev/null | grep "/systemd/user/") ]]; then
+	flag="--user"
+fi
+
+
+case $1 in
+    status)
+	echo "Checking service status.."
+	systemctl ${flag} status "$2".service
+	;;
+    start)
+        echo "Starting service..."
+	systemctl ${flag} start "$2".service
+	# SYSTEMD_LOG_LEVEL=debug systemctl start "$2"  2>&1|egrep "Got result|Failed"
+	;;
+    stop)
+       echo "Stopping service..."
+       systemctl ${flag} stop "$2".service
+       ;;
+    *)
+        echo "Usage: $0 {status|start|stop <service>}"
+        exit 1
+        ;;
+esac
