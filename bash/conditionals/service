@@ -2,7 +2,12 @@
 
 if [[ $(systemctl --user cat "$2" 2>/dev/null | grep "/systemd/user/") ]]; then
 	flag="--user"
+	echo "Systemd Unit is owned by User"
 fi
+
+started=$(systemctl --user is-active pipewire)
+
+echo $started
 
 
 case $1 in
@@ -11,8 +16,12 @@ case $1 in
 	systemctl ${flag} status "$2".service
 	;;
     start)
-        echo "Starting service..."
-	systemctl ${flag} start "$2".service
+        if [[ ${started} == "active" ]]; then
+		echo "$2 is already  running."
+	else
+		echo "Starting service..."
+		systemctl ${flag} start "$2".service
+	fi	
 	# SYSTEMD_LOG_LEVEL=debug systemctl start "$2"  2>&1|egrep "Got result|Failed"
 	;;
     stop)

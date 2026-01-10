@@ -1,0 +1,2 @@
+echo 'export PATH="$HOME/lab/custom_scripts:$PATH"' >> ~/.bashrc
+source ~/.bashrc

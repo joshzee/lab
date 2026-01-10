@@ -1,0 +1,9 @@
+#!/bin/bash
+read -r line
+line="${line,,}"
+line="${line//[^a-z0-9]/-}"
+
+# NOTE: ^ means negated because it's in brackets
+
+line="${line//--/-}"
+echo "${line#-}"
