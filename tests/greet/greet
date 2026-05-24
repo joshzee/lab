@@ -1,0 +1,3 @@
+#!/bin/bash
+echo "Hi from this container"
+echo "Hi again from this container"
