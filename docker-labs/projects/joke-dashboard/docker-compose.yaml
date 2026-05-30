@@ -1,0 +1,20 @@
+services:
+  updater:
+    build:
+      context: .
+      dockerfile: Dockerfile.updater
+    volumes:
+      - html:/html
+    restart: unless-stopped
+
+  web:
+    image: nginx:1.28
+    ports:
+      - "8080:80"
+    volumes:
+      - html:/usr/share/nginx/html:ro
+    restart: unless-stopped
+
+volumes:
+  html:
+
