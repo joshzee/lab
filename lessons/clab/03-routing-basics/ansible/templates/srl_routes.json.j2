@@ -1,0 +1,29 @@
+{# Generates SR Linux CLI commands for static route configuration.
+   Variables come from host_vars/<hostname>.yml:
+     static_routes:
+       - prefix: 10.1.4.0/24
+         next_hop: 10.1.2.2
+         description: host2 subnet via srl2
+
+   SR Linux requires a next-hop-group for each static route.
+   We create one group per route, named after the prefix with
+   dots and slashes replaced (e.g., nhg-10-1-4-0-24).
+#}
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "cli",
+  "params": {
+    "commands": [
+      "enter candidate",
+{% for route in static_routes %}
+{% set nhg_name = "nhg-" + route.prefix | replace(".", "-") | replace("/", "-") %}
+      "set / network-instance default next-hop-groups group {{ nhg_name }} admin-state enable",
+      "set / network-instance default next-hop-groups group {{ nhg_name }} nexthop 1 ip-address {{ route.next_hop }}",
+      "set / network-instance default static-routes route {{ route.prefix }} admin-state enable",
+      "set / network-instance default static-routes route {{ route.prefix }} next-hop-group {{ nhg_name }}",
+{% endfor %}
+      "commit now"
+    ]
+  }
+}
