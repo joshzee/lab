@@ -1,0 +1,74 @@
+---
+# Lesson 3: Configure interfaces and static routes on SR Linux routers
+#
+# This playbook extends lesson 02's interface configuration with static
+# routes. It uses two Jinja2 templates to generate SR Linux CLI commands
+# and pushes them via the JSON-RPC API.
+#
+# Usage:
+#   cd ansible
+#   ansible-playbook -i inventory.yml playbook.yml
+
+- name: Configure SR Linux routers -- interfaces and static routes
+  hosts: routers
+  gather_facts: false
+  connection: local
+
+  tasks:
+    - name: Apply interface configuration via JSON-RPC
+      ansible.builtin.uri:
+        url: "http://{{ ansible_host }}/jsonrpc"
+        method: POST
+        url_username: admin
+        url_password: NokiaSrl1!
+        force_basic_auth: true
+        body_format: json
+        body: "{{ lookup('template', 'templates/srl_interfaces.json.j2') }}"
+        status_code: 200
+      register: interface_result
+
+    - name: Show interface configuration result
+      ansible.builtin.debug:
+        msg: "{{ inventory_hostname }}: Interface configuration applied"
+      when: interface_result.status == 200
+
+    - name: Apply static route configuration via JSON-RPC
+      ansible.builtin.uri:
+        url: "http://{{ ansible_host }}/jsonrpc"
+        method: POST
+        url_username: admin
+        url_password: NokiaSrl1!
+        force_basic_auth: true
+        body_format: json
+        body: "{{ lookup('template', 'templates/srl_routes.json.j2') }}"
+        status_code: 200
+      register: routes_result
+      when: static_routes is defined
+
+    - name: Show route configuration result
+      ansible.builtin.debug:
+        msg: "{{ inventory_hostname }}: Static routes applied"
+      when: routes_result is defined and routes_result.status == 200
+
+    - name: Verify routing table
+      ansible.builtin.uri:
+        url: "http://{{ ansible_host }}/jsonrpc"
+        method: POST
+        url_username: admin
+        url_password: NokiaSrl1!
+        force_basic_auth: true
+        body_format: json
+        body:
+          jsonrpc: "2.0"
+          id: 2
+          method: get
+          params:
+            commands:
+              - path: /network-instance[name=default]/route-table
+                datastore: state
+        status_code: 200
+      register: verify_result
+
+    - name: Display routing table
+      ansible.builtin.debug:
+        msg: "{{ inventory_hostname }} route-table: {{ verify_result.json.result | default('check manually') }}"

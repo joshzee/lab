@@ -1,0 +1,18 @@
+# Solution: Mixed network OS and Linux topology
+name: mixed-lab
+
+topology:
+  nodes:
+    # Nokia SR Linux router
+    router:
+      kind: srl
+      image: ghcr.io/nokia/srlinux:24.10.1
+
+    # Standard Alpine Linux host
+    host1:
+      kind: linux
+      image: alpine:3.20
+
+  links:
+    # Connect router's e1-1 to host's eth1
+    - endpoints: ["router:e1-1", "host1:eth1"]

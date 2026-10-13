@@ -1,0 +1,23 @@
+# Solution: Three-node linear topology
+name: three-node-lab
+
+topology:
+  nodes:
+    srl1:
+      kind: srl
+      image: ghcr.io/nokia/srlinux:24.10.1
+
+    srl2:
+      kind: srl
+      image: ghcr.io/nokia/srlinux:24.10.1
+
+    srl3:
+      kind: srl
+      image: ghcr.io/nokia/srlinux:24.10.1
+
+  links:
+    # srl1 <-> srl2 connection
+    - endpoints: ["srl1:e1-1", "srl2:e1-1"]
+
+    # srl2 <-> srl3 connection
+    - endpoints: ["srl2:e1-2", "srl3:e1-1"]

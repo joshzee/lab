@@ -1,0 +1,20 @@
+# Lesson 1: First Containerlab Topology
+# Two SR Linux nodes connected directly
+
+name: first-lab
+
+topology:
+  nodes:
+    # First SR Linux node
+    srl1:
+      kind: srl
+      image: ghcr.io/nokia/srlinux:24.10.1
+
+    # Second SR Linux node
+    srl2:
+      kind: srl
+      image: ghcr.io/nokia/srlinux:24.10.1
+
+  links:
+    # Connect srl1's ethernet-1/1 to srl2's ethernet-1/1
+    - endpoints: ["srl1:e1-1", "srl2:e1-1"]
