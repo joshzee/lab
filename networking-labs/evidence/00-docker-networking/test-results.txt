@@ -1,0 +1,29 @@
+============================= test session starts ==============================
+platform linux -- Python 3.14.4, pytest-9.0.2, pluggy-1.6.0 -- /home/josh/lab/networking-labs/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/josh/lab/networking-labs
+configfile: pyproject.toml
+collecting ... collected 20 items
+
+tests/test_docker_networking.py::TestDockerBasics::test_docker_available PASSED [  5%]
+tests/test_docker_networking.py::TestDockerBasics::test_docker_running PASSED [ 10%]
+tests/test_docker_networking.py::TestDefaultBridge::test_default_bridge_exists PASSED [ 15%]
+tests/test_docker_networking.py::TestDefaultBridge::test_default_bridge_subnet PASSED [ 20%]
+tests/test_docker_networking.py::TestDefaultBridge::test_docker0_interface_exists PASSED [ 25%]
+tests/test_docker_networking.py::TestDefaultBridge::test_docker0_is_bridge PASSED [ 30%]
+tests/test_docker_networking.py::TestNamespaceLab::test_red_namespace_exists PASSED [ 35%]
+tests/test_docker_networking.py::TestNamespaceLab::test_blue_namespace_exists PASSED [ 40%]
+tests/test_docker_networking.py::TestNamespaceLab::test_bridge_exists PASSED [ 45%]
+tests/test_docker_networking.py::TestNamespaceLab::test_bridge_has_ip PASSED [ 50%]
+tests/test_docker_networking.py::TestNamespaceLab::test_veth_pairs_on_bridge PASSED [ 55%]
+tests/test_docker_networking.py::TestNamespaceLab::test_red_namespace_has_ip PASSED [ 60%]
+tests/test_docker_networking.py::TestNamespaceLab::test_blue_namespace_has_ip PASSED [ 65%]
+tests/test_docker_networking.py::TestNamespaceLab::test_red_can_ping_blue PASSED [ 70%]
+tests/test_docker_networking.py::TestNamespaceLab::test_blue_can_ping_red PASSED [ 75%]
+tests/test_docker_networking.py::TestNamespaceLab::test_namespace_can_ping_bridge PASSED [ 80%]
+tests/test_docker_networking.py::TestNAT::test_ip_forwarding_enabled PASSED [ 85%]
+tests/test_docker_networking.py::TestNAT::test_forward_rules_exist PASSED [ 90%]
+tests/test_docker_networking.py::TestNAT::test_masquerade_rule_exists PASSED [ 95%]
+tests/test_docker_networking.py::TestNAT::test_namespace_has_default_route PASSED [100%]
+
+============================== 20 passed in 0.40s ==============================
