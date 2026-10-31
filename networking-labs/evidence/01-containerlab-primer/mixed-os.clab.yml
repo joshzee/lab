@@ -1,0 +1,17 @@
+name: mixed-lab
+
+topology:
+  nodes:
+    # First SR Linux node (router)
+    router:
+      kind: srl
+      image: ghcr.io/nokia/srlinux:24.10.1
+
+    # Alpine Linux Host
+    host1:
+      kind: linux
+      image: alpine:3.20
+
+  links:
+    # Connect router's ethernet-1/1 to host1's eth0
+    - endpoints: ["router:e1-1", "host1:eth1"]

@@ -1,0 +1,46 @@
+{
+  "three-node-lab": [
+    {
+      "lab_name": "three-node-lab",
+      "labPath": "three-node.clab.yml",
+      "absLabPath": "/home/josh/lab/networking-labs/evidence/01-containerlab-primer/three-node.clab.yml",
+      "name": "clab-three-node-lab-srl1",
+      "container_id": "6d72fd515e3d",
+      "image": "ghcr.io/nokia/srlinux:24.10.1",
+      "kind": "srl",
+      "state": "running",
+      "status": "Up 38 minutes",
+      "ipv4_address": "172.20.20.2/24",
+      "ipv6_address": "3fff:172:20:20::2/64",
+      "owner": "josh"
+    },
+    {
+      "lab_name": "three-node-lab",
+      "labPath": "three-node.clab.yml",
+      "absLabPath": "/home/josh/lab/networking-labs/evidence/01-containerlab-primer/three-node.clab.yml",
+      "name": "clab-three-node-lab-srl2",
+      "container_id": "4a4167d6bcce",
+      "image": "ghcr.io/nokia/srlinux:24.10.1",
+      "kind": "srl",
+      "state": "running",
+      "status": "Up 38 minutes",
+      "ipv4_address": "172.20.20.3/24",
+      "ipv6_address": "3fff:172:20:20::3/64",
+      "owner": "josh"
+    },
+    {
+      "lab_name": "three-node-lab",
+      "labPath": "three-node.clab.yml",
+      "absLabPath": "/home/josh/lab/networking-labs/evidence/01-containerlab-primer/three-node.clab.yml",
+      "name": "clab-three-node-lab-srl3",
+      "container_id": "0bc250994742",
+      "image": "ghcr.io/nokia/srlinux:24.10.1",
+      "kind": "srl",
+      "state": "running",
+      "status": "Up 38 minutes",
+      "ipv4_address": "172.20.20.4/24",
+      "ipv6_address": "3fff:172:20:20::4/64",
+      "owner": "josh"
+    }
+  ]
+}
