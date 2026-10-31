@@ -18,7 +18,7 @@ Rather than marking exercises as complete without context, each module contains 
 | Module                  | Status      |         Validation | Evidence                               |
 | ----------------------- | ----------- | -----------------: | -------------------------------------- |
 | Docker Networking       | Complete    | 20/20 tests passed | [View evidence](00-docker-networking/) |
-| Containerlab Primer     | Not started |                  — | —                                      |
+| Containerlab Primer     | Complete    | 18/18 tests passed | [View evidence](01-containerlab-primer) |
 | IP Fundamentals         | Not started |                  — | —                                      |
 | Routing Basics          | Not started |                  — | —                                      |
 | Dynamic Routing and BGP | Not started |                  — | —                                      |
